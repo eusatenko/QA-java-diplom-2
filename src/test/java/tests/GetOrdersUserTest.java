@@ -1,12 +1,7 @@
 package tests;
 
-import data.UserData;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import metods.User;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.apache.http.HttpStatus.SC_OK;
@@ -14,22 +9,7 @@ import static org.apache.http.HttpStatus.SC_UNAUTHORIZED;
 import static org.hamcrest.Matchers.*;
 
 @DisplayName("Тесты получения списка заказов конкретного Пользователя")
-public class GetOrdersUserTest {
-    private String bearerToken;
-    private User user;
-    private UserData userData;
-
-    @Before
-    public void setUp(){
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
-        userData = new UserData();
-        user = new User();
-    }
-    @After
-    public void deleteUser() {
-        user.deleteUser(bearerToken);
-    }
-
+public class GetOrdersUserTest extends BaseTest{
     @DisplayName("Получение заказов авторизованного пользователя")
     @Test
     public void checkGetOrdersWithAuth() {

@@ -1,17 +1,11 @@
 package tests;
 
 import data.Ingredients;
-import data.UserData;
 import data.deserializationIngredients.Data;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import metods.Order;
-import metods.User;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
 
 import static org.apache.http.HttpStatus.*;
@@ -19,22 +13,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @DisplayName("Тесты создания заказа")
-public class CreateOrderTest {
-    private String bearerToken;
-    private User user;
-    private UserData userData;
-
-    @Before
-    public void setUp(){
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
-        userData = new UserData();
-        user = new User();
-    }
-    @After
-    public void deleteUser() {
-        user.deleteUser(bearerToken);
-    }
-
+public class CreateOrderTest extends BaseTest{
     @DisplayName("Создание заказа с авторизацией с ингридиентами")
     @Test
     public void checkCreateOrderWithAuthAndIngredients() {

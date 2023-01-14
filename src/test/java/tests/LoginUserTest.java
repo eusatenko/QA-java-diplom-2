@@ -1,13 +1,7 @@
 package tests;
 
-
-import data.UserData;
 import io.qameta.allure.junit4.DisplayName;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import metods.User;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.apache.http.HttpStatus.SC_OK;
@@ -16,22 +10,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
 @DisplayName("Тесты авторизации Пользователя")
-public class LoginUserTest {
-    private User user;
-    private UserData userData;
-    private String bearerToken;
-
-    @Before
-    public void setUp(){
-        RestAssured.baseURI = "https://stellarburgers.nomoreparties.site";
-        userData = new UserData();
-        user = new User();
-    }
-    @After
-    public void deleteUser() {
-        user.deleteUser(bearerToken);
-    }
-
+public class LoginUserTest extends BaseTest{
     @DisplayName("Логин под существующим пользователем")
     @Test
     public void checkLoginUser() {
